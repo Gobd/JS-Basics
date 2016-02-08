@@ -137,16 +137,20 @@ function fnCounter(fn, N) {
 
 
 
-function func(a){
-  return a;
-}
-
-function closure(a){
+function closure(){
   var count = -1;
   return function(){
     count += 1;
-    {return a(count);}
+    {return count;}
   };
+}
+
+var funcPush = closure();
+
+var funcArray = [];
+
+for (i=0;i<6;i++){
+  funcArray.push(funcPush);
 }
 
 var funcPush = closure(func);
