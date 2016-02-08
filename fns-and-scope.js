@@ -8,6 +8,8 @@ var name = 'Tyler';
   function isTyler(name) {
     if (name === "Tyler") {
       return true;
+    } else {
+      return false;
     }
   }
 
@@ -31,7 +33,7 @@ function getName(){
 //then alerts "Welcome, " plus whatever the users name is.
 
   function welcome(){
-    alert("Welcome " + getName());
+    alert("Welcome, " + getName());
   }
 
 
@@ -42,7 +44,8 @@ function getName(){
 
 //What is the difference between arguments and parameters?
 
-  //Answer Here
+//parameters are in the function (function hey(name){} name is parameter), arguments are the things like arays passed in to the function like hey(arr);
+
 
 
 //Next problem
@@ -52,7 +55,8 @@ function getName(){
 //What are all the falsy values in JavaScript and how do you check if something is falsy?
 
 
-  //Answer Here
+// undefined null NaN false 0 “” (empty string)
+Boolean(undefined);
 
 
 
@@ -62,15 +66,17 @@ function getName(){
 
 //Create a function called myName that returns your name
 
-  function myName(){
-    return "Brian";
-  }
+  var myName = function(){
+    return name;
+  };
 
 
 
 //Now save the function definition of myName into a new variable called newMyName
 
-  var newMyName = myName();
+var newMyName = function(){
+return myName;
+};
 
 //Now alert the result of invoking newMyName
 

@@ -9,11 +9,11 @@ var outer = function(){
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+  var inner = outer();
 
 //Once you do that, invoke inner.
 
-  //Code Here
+  inner();
 
 
 
@@ -32,7 +32,8 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+var call = callFriend();
+call("435-215-9248");
 
 
 
@@ -44,7 +45,13 @@ var callFriend = function(){
   Write a function called makeCounter that makes the following code work properly.
 */
 
-  //Code Here
+var makeCounter = function(){
+  var c = 0;
+  return function count() {
+    return c+= 1;
+  };
+};
+
   var count = makeCounter();
   count(); // 1
   count(); // 2
@@ -61,12 +68,25 @@ var callFriend = function(){
   Write a function named codeLove that returns the string 'I love code'. Write a second function named codeFriend that accepts the first function as it's first parameter. The second function should return a new third function. Store the third function in a variable, codeEcho which, when invoked, invokes the first, original function that was passed in, but will only ever do so once (returns null after first invocation).
 */
 
-  //Code Here
+// Write a function named codeLove that returns the string 'I love code'.
+//  Write a second function named codeFriend that accepts codeLove as it's parameter and returns a third (anonymous) function.
+//  The third function will return the invocation of codeLove, but will only do so once. It will return null after the first invocation.
+//  Invoke codeFriend with codeLove passed in as a parameter and assign the result to a new variable named codeEcho.
 
+function codeLove(){
+  return "I love code";
+}
 
+function codeFriend(cl){
+  var count = 0;
+  return function(){
+    count += 1;
+    if (count === 1) {return cl();} else {return null;}
+  };
+}
 
+var codeEcho = codeFriend(codeLove);
 //Next Problem
-
 
 
 /*
@@ -74,10 +94,17 @@ var callFriend = function(){
 */
 
 
-
-//Next Problem
-
-
+function fnCounter(fn, N) {
+  var count = 0;
+  return function() {
+    if (count < N) {
+      count++;
+      return fn();
+    } else {
+      return "STOP";
+    }
+  };
+}
 
 /*
   var counter = function(){
@@ -103,12 +130,32 @@ var callFriend = function(){
   Fix the counter function so that it works the way you expect it to work. (logging 1 then 2 then 3, etc) (Note: No unit test for this one because of the timeout)
 */
 
-    //Code Here
+// var counter = function(){
+// for (var i=1; i<=5; i++) {setTimeout( function timer(){console.log( i );}, i*1000 );}};
+//
+// counter();
 
 
 
-//Next Problem
+function func(a){
+  return a;
+}
 
+function closure(a){
+  var count = -1;
+  return function(){
+    count += 1;
+    {return a(count);}
+  };
+}
+
+var funcPush = closure(func);
+
+var funcArray = [];
+
+for (i=0;i<6;i++){
+  funcArray.push(funcPush);
+}
 
 
 /*
